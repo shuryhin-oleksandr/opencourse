@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block content_title %}
+  <h2 class="h3">{% trans "Courses" %}</h2>
+  <a class="btn btn-primary btn" href="{% url 'courses:create' %}">{% trans "Create course" %}</a>
+
+{% endblock content_title %}
+
+{% block content %}
+  <ul class="list-group">
+    {% for course in object_list %}
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-sm-7 float-left">
+            <a class="float-left" href="{% url 'courses:detail' course.pk %}">{{ course }}</a></div>
+          <div class="col-sm-5 float-right">
+            <a class="btn btn-outline-danger float-right mx-1 my-1 btn-sm " href="{% url 'courses:delete' course.pk %}"
+               role="button"><span class="oi oi-trash"></span></a>
+            <a class="btn btn-outline-warning float-right btn-sm  mx-1 my-1" href="{% url 'courses:edit' course.pk %}"
+               role="button"><span class="oi oi-pencil "></span></a>
+            <a class="btn btn-outline-info float-right btn-sm  mx-1 my-1"
+               href="{% url 'courses:handouts:list' course.pk %}" role="button">
+               <span class="oi oi-list"></span></a>
+            <a class="btn btn-outline-info float-right btn-sm mx-1 my-1"
+               href="{% url 'courses:students_list' course.pk %}" role="button">
+               <span class="oi oi-people"></span></a>
+          </div>
+        </div>
+      </li>
+    {% empty %}
+      <li class="list-group-item">{% trans "No courses yet." %}</li>
+    {% endfor %}
+  </ul>
+{% endblock content %}

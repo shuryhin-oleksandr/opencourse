@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block css %}
+  {{ block.super }}
+  <link rel="stylesheet" href={% static "css/search.css" %} type="text/css"/>
+{% endblock css %}
+
+{% block header_content %}
+  <div class="container">
+    <div class="row d-md-flex no-gutters slider-text align-items-center justify-content-center">
+      <div class="col-md-7 d-flex align-items-center ftco-animate">
+        <div class="text text-center pt-5 mt-md-5">
+          
+          <h1 class="mb-5">{% trans "What do you want to learn?" %}</h1>
+          <div class="ftco-counter ftco-no-pt ftco-no-pb">
+            <div class="row">
+              <div class="col-md-4 d-flex justify-content-center counter-wrap ftco-animate">
+                <div class="block-18">
+                  <div class="text d-flex">
+                    <div class="icon mr-2">
+                      <span class="flaticon-worldwide"></span>
+                    </div>
+                    <div class="desc text-left">
+                      <strong class="number" data-number="46">46</strong>
+                      <span>{% trans "Cities" %}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 d-flex justify-content-center counter-wrap ftco-animate">
+                <div class="block-18 text-center">
+                  <div class="text d-flex">
+                    <div class="icon mr-2">
+                      <span class="flaticon-visitor"></span>
+                    </div>
+                    <div class="desc text-left">
+                      <strong class="number" data-number="450">0</strong>
+                      <span>{% trans "Professors" %}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 d-flex justify-content-center counter-wrap ftco-animate">
+                <div class="block-18 text-center">
+                  <div class="text d-flex">
+                    <div class="icon mr-2">
+                      <span class="flaticon-resume"></span>
+                    </div>
+                    <div class="desc text-left">
+                      <strong class="number" data-number="80000">0</strong>
+                      <span>{% trans "Students" %}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="ftco-search my-md-5">
+            <div class="row">
+              <div class="col-md-12 nav-link-wrap">
+                <div class="nav nav-pills text-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                  <a class="nav-link active mr-md-1" id="v-pills-1-tab" data-toggle="pill" href="#v-pills-1"
+                     role="tab" aria-controls="v-pills-1" aria-selected="true">{% trans "Find a Professor" %}</a>
+                  <a class="nav-link" id="v-pills-2-tab" data-toggle="pill" href="#v-pills-2"
+                    role="tab" aria-controls="v-pills-2" aria-selected="false">{% trans "Find a Center" %}</a>
+                </div>
+              </div>
+              <div class="col-md-12 tab-wrap">
+                <div class="tab-content p-4" id="v-pills-tabContent">
+                  <div class="tab-pane fade show active" id="v-pills-1" role="tabpanel" aria-labelledby="v-pills-nextgen-tab">
+                    <form action="{% url 'courses:search_results' %}" class="search-job">
+                      <div class="row no-gutters">
+                        <div class="col-md mr-md-2">
+                                {{ form.city|as_crispy_field }}
+                        </div>
+                        <div class="col-md mr-md-2">
+                                {{ form.area|as_crispy_field }}
+                        </div>
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <div class="form-field">
+                              <button type="submit" class="form-control btn btn-primary">{% trans "Search" %}</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="tab-pane fade" id="v-pills-2" role="tabpanel"
+                    aria-labelledby="v-pills-performance-tab">
+                    <form action="{% url 'courses:centers:search_results' %}" id="center_search" class="search-job" method="get">
+                      <div class="row no-gutters">
+                        <div class="col-md mr-md-2">
+                          {{ form.name|as_crispy_field }}
+                        </div>
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <div class="form-field">
+                              <button type="submit" class="form-control btn btn-primary">{% trans "Search" %}</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              <p class="mb-4">{% trans "From math tutoring to yoga, Superprof is the best and fastest way to find high-quality teachers." %}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock header_content %}
+
+{% block main %}
+{% endblock main %}
+
+{% block footer %}
+{% endblock footer %}
